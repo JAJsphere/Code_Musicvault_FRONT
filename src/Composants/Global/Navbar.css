@@ -1,0 +1,142 @@
+/* Empêche le débordement horizontal */
+body {
+  overflow-x: hidden;
+}
+
+/* RESET BORDURE / MARGIN / PADDING */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* pratique pour tous les éléments */
+}
+
+/* TOUS LES COMPOSANTS auront cette police */
+* {
+  font-family: sans-serif;
+}
+
+/* ----- HEADER ----- */
+.header {
+  width: 100%;
+  height: 70px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* espace entre gauche / centre / droite */
+  border-bottom: 1px solid #eee;
+  padding: 0 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  box-sizing: border-box;
+}
+
+
+/* Logo à gauche, icône comme PMA */
+.logo-link {
+    display: flex;           /* ⚡ essentiel pour mettre les enfants sur la même ligne */
+    align-items: center;     /* centre verticalement l'icône et le texte */
+    gap: 12px;               /* espace entre le logo et le texte */
+}
+
+/* Cercle violet avec icône */
+.logo-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #6c63ff, #8b6cff, #ff4d94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111;
+}
+
+/* Nav au centre */
+.nav {
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  /* prend tout l'espace central */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.25s;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #a855f7;
+  transition: width 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #a855f7;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: #a855f7;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Bouton déconnexion style "Ajouter une musique" */
+.logout-btn {
+  background: linear-gradient(135deg, #6c63ff, #8b6cff, #ff4d94);
+  color: white;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.35);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.logout-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.logout-btn:hover::after {
+  opacity: 1;
+}
+
+.logout-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+}

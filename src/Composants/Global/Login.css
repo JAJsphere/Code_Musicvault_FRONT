@@ -1,0 +1,111 @@
+    /* Conteneur global centré */
+    .Login-conteneur {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #6b73ff, #000dff);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Carte du formulaire */
+    .Login-carte {
+        background-color: #fff;
+        padding: 40px 30px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+
+    /* Titre */
+    .Login-titre {
+        margin-bottom: 25px;
+        font-size: 1.8rem;
+        color: #333;
+    }
+
+    /* Formulaire */
+    .Login-formulaire {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Champs */
+    .Login-champ {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    /* Label */
+    .Login-label {
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #555;
+    }
+
+    /* Inputs */
+    .Login-input {
+        padding: 12px 15px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .Login-input:focus {
+        outline: none;
+        border-color: #6b73ff;
+        box-shadow: 0 0 5px rgba(107, 115, 255, 0.5);
+    }
+
+    /* Bouton */
+    .Login-bouton {
+        padding: 12px;
+        background-color: #6b73ff;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+
+    .Login-bouton:hover {
+        background-color: #4f56d3;
+    }
+
+    /* Message d'erreur */
+    .Login-erreur {
+        color: #ff4d4f;
+        font-weight: 600;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+
+    /* Message première connexion */
+    .Login-info {
+        background-color: #f0f2ff;
+        border-left: 4px solid #6b73ff;
+        padding: 10px 15px;
+        border-radius: 8px;
+        color: #333;
+        font-size: 0.9rem;
+        text-align: left;
+        margin-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+    .Login-changer-mdp {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }

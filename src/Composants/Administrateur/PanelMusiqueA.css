@@ -1,0 +1,843 @@
+    /* CONTENEUR GLOBAL */
+    .PMA-panel-musiques-admin {
+
+        font-family: "Arial", sans-serif;
+        min-height: 100vh;
+        margin-top: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+
+    /* HEADER ROSE + TITRE */
+    .PMA-panel-header {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .PMA-panel-title {
+        display: flex;
+        align-items: center;
+        color: #333;
+        font-weight: bold;
+        gap: 10px;
+        /* Dégradé de plusieurs violets clairs */
+        background: linear-gradient(135deg,
+                #f4e8f6, #f5e8f4, #f3e9f7, #f6e8f4);
+        width: 100%;
+        height: 150px;
+        padding: 0 20px;
+
+    }
+
+
+
+    /* BOUTONS AU DESSOUS DU TITRE */
+    .PMA-buttons-actions {
+        display: flex;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+    }
+
+
+
+
+    /* BOUTONS MODERNES */
+
+    /* Bouton Ajouter une musique */
+    .PMA-btn-action-create {
+        background: linear-gradient(135deg,
+                #6c63ff,
+                #8b6cff,
+                #ff4d94);
+        color: white;
+        border: none;
+        padding: 13px 25px;
+        /* PLUS GROS */
+        border-radius: 10px;
+        /* plus moderne */
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+        box-shadow: 0 8px 20px rgba(108, 99, 255, 0.35);
+        transition: all 0.25s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .PMA-btn-action-create::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.15);
+        /* filtre noir léger */
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+
+
+    .PMA-btn-action-create:hover::after {
+        opacity: 1;
+    }
+
+
+    /* Bouton Gérer les genres */
+    .PMA-btn-action-gererGenre {
+        background-color: #ffffff;
+        color: #000000;
+
+        /* IDENTIQUE AUX FILTRES */
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 13px 25px;
+        font-size: 14px;
+
+        cursor: pointer;
+        font-weight: normal;
+
+        box-shadow: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .PMA-btn-action-gererGenre:hover {
+        background: linear-gradient(135deg,
+                #6c63ff,
+                #8b6cff,
+                #ff4d94);
+        color: white;
+    }
+
+
+
+    .PMA-filtre-tri,
+    .PMA-filtre-input {
+        padding: 13px 25px;
+        /* ⬅ même que Ajouter */
+        font-size: 14px;
+        height: auto;
+        /* important pour éviter conflits navigateur */
+
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+
+
+    /* =============================== */
+    /* ===== SEARCH BAR MODERNE ====== */
+    /* =============================== */
+
+    /* Conteneur de la searchbar */
+    .PMA-conteneur-searchbar {
+        margin-top: 50px;
+        width: 100%;
+        /* prend toute la largeur du parent */
+        position: relative;
+        /* pour positionner la loupe */
+    }
+
+    /* Barre de recherche */
+    .PMA-search-bar {
+        position: relative;
+        width: 100%;
+    }
+
+    .PMA-search-bar input {
+        width: 100%;
+        /* prend toute la largeur du conteneur */
+        padding: 12px 20px 12px 45px;
+        /* espace pour la loupe à gauche */
+        font-size: 16px;
+        border-radius: 12px;
+        /* arrondi complet style pill */
+        border: 1px solid #ccc;
+        background: #fff;
+        outline: none;
+        box-sizing: border-box;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s ease;
+    }
+
+    .PMA-search-bar input::placeholder {
+        color: #999;
+        font-weight: 400;
+    }
+
+    /* Effet focus */
+    .PMA-search-bar input:focus {
+        border-color: #6c63ff;
+        box-shadow:
+            0 6px 30px rgba(108, 99, 255, 0.25),
+            0 0 0 3px rgba(108, 99, 255, 0.15);
+    }
+
+    /* Loupe noire fixe à gauche */
+    .PMA-search-bar svg {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #000;
+        pointer-events: none;
+        width: 20px;
+        height: 20px;
+    }
+
+
+
+
+
+
+
+    /* MESSAGES */
+    .PMA-message,
+    .PMA-message-success {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .PMA-message-success {
+        color: green;
+    }
+
+    .PMA-message {
+        color: red;
+    }
+
+    /* GRID DES MUSIQUES */
+    .PMA-musique-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+        /* centrer sans prendre tout l'écran */
+    }
+
+    /* CARD MUSIQUE */
+    .PMA-musique-card {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .PMA-musique-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* IMAGE */
+    .PMA-musique-img img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .PMA-musique-placeholder {
+        width: 100%;
+        height: 180px;
+        background-color: #ddd;
+    }
+
+
+    /* INFO MUSIQUE REORGANISÉE */
+    .PMA-musique-info {
+        padding: 12px 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .PMA-musique-info h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+        color: #222;
+    }
+
+    .PMA-musique-artiste {
+        font-size: 14px;
+        color: #555;
+        /* gris foncé */
+        margin: 2px 0 0 0;
+    }
+
+    .PMA-musique-album {
+        font-size: 14px;
+        color: #000;
+        /* noir normal */
+        margin: 2px 0 0 0;
+    }
+
+    /* trait léger */
+    .PMA-musique-separator {
+        border: none;
+        border-top: 1px solid #eee;
+        margin: 8px 0;
+    }
+
+    /* BOTTOM avec genre et date */
+    .PMA-musique-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* genre dans petit cadre rose */
+    .PMA-musique-genre {
+        background-color: #ffd6e0;
+        color: #ff4d94;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+
+    /* date à droite */
+    .PMA-musique-date {
+        font-size: 12px;
+        color: #888;
+    }
+
+    /* BOUTONS VERTICAUX */
+    .PMA-musique-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px;
+        background-color: #f0f0f0;
+    }
+
+    .PMA-musique-actions button {
+        padding: 8px;
+        border: none;
+        border-radius: 6px;
+        font-size: 13px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+
+    /* Couleurs instinctives pour les boutons */
+    .PMA-musique-actions button:nth-child(1) {
+        background-color: #077cdc;
+        /* vert Modifier */
+        color: white;
+    }
+
+    .PMA-musique-actions button:nth-child(1):hover {
+        background-color: #0664b1;
+    }
+
+    .PMA-musique-actions button:nth-child(2) {
+        background-color: #9121f3;
+        /* bleu Playlist */
+        color: white;
+    }
+
+    .PMA-musique-actions button:nth-child(2):hover {
+        background-color: #7b0cb6;
+    }
+
+    .PMA-musique-actions button:nth-child(3) {
+        background-color: #f44336;
+        /* rouge Supprimer */
+        color: white;
+    }
+
+    .PMA-musique-actions button:nth-child(3):hover {
+        background-color: #ba000d;
+    }
+
+
+    /* TEXTE SI VIDE */
+    .PMA-empty {
+        grid-column: 1/-1;
+        text-align: center;
+        font-size: 16px;
+        color: #666;
+        padding: 40px 0;
+    }
+
+
+    /* MESSAGE DE SUCCÈS DANS LA GRILLE */
+    .PMA-message-success {
+        width: 100%;
+        /* prendra 100% de son parent */
+        max-width: 1200px;
+        /* facultatif, si tu veux limiter */
+        margin: 0 auto 15px auto;
+        /* centré sur la grille */
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+        padding: 12px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 10;
+    }
+
+
+
+    /* --------------------------------- */
+    /* --------- PARTIE POPUPS --------- */
+    /* --------------------------------- */
+
+    /* ------------------------------- */
+    /* ------ OVERLAY POPUP ----------- */
+    /* ------------------------------- */
+    .PMA-popup-edit-overlay,
+    .PMA-genre-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 999;
+    }
+
+    /* ------------------------------- */
+    /* ------ CONTENEUR POPUP -------- */
+    /* ------------------------------- */
+    .PMA-popup-edit,
+    .PMA-genre-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        padding: 25px 30px;
+        z-index: 1000;
+        width: 90%;
+        max-width: 480px;
+        font-family: "Arial", sans-serif;
+        transition: all 0.15s ease-out;
+        opacity: 1;
+        /* pas d'apparition lente */
+        scale: 1;
+        /* pas de zoom lent */
+    }
+
+    /* TITRE POPUP */
+    .PMA-popup-edit h3,
+    .PMA-genre-popup h3 {
+        margin: 0 0 20px 0;
+        font-size: 22px;
+        font-weight: 700;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* LABELS & INPUT */
+    .PMA-popup-edit label,
+    .PMA-genre-popup label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .PMA-popup-edit input,
+    .PMA-popup-edit select,
+    .PMA-genre-popup input,
+    .PMA-genre-popup select {
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        margin-top: 5px;
+        transition: all 0.15s;
+    }
+
+    .PMA-popup-edit input:focus,
+    .PMA-popup-edit select:focus,
+    .PMA-genre-popup input:focus,
+    .PMA-genre-popup select:focus {
+        border-color: #6c63ff;
+        box-shadow: 0 0 6px rgba(108, 99, 255, 0.25);
+        outline: none;
+    }
+
+    /* MESSAGE D'ERREUR */
+    .PMA-popup-message,
+    .PMA-genre-message {
+        font-size: 13px;
+        color: #f44336;
+        margin-bottom: 10px;
+    }
+
+
+
+
+
+    /* ------------------------------- */
+    /* ------ BOUTONS POPUP PMA ------- */
+    /* ------------------------------- */
+
+
+    /* Conteneur des boutons popup */
+    .PMA-popup-actions {
+        display: flex;
+        justify-content: space-between;
+        /* Valider à gauche, Annuler à droite */
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    /* Bouton Valider */
+    .PMA-btn-validate {
+        flex: 1;
+        /* prend tout l'espace dispo côté gauche */
+        padding: 10px 16px;
+        background: linear-gradient(135deg, #6c63ff, #8b6cff, #ff4d94);
+        color: white;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.25s ease;
+    }
+
+    .PMA-btn-validate::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+
+    .PMA-btn-validate:hover::after {
+        opacity: 1;
+    }
+
+    /* Bouton Annuler */
+    .PMA-btn-cancel {
+        flex: 1;
+        /* prend tout l'espace dispo côté droit */
+        padding: 10px 16px;
+        background-color: #fff;
+        color: #000;
+        font-weight: 700;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+
+    .PMA-btn-cancel:hover {
+        background: linear-gradient(135deg, #6c63ff, #8b6cff, #ff4d94);
+        color: white;
+    }
+
+
+    /* Bouton Fermer popup genres */
+    .PMA-genre-btn-close {
+        padding: 10px 16px;
+        background-color: #f0f0f0;
+        color: #333;
+        font-weight: 700;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+
+    /* Hover */
+    .PMA-genre-btn-close:hover {
+        background-color: #e0e0e0;
+        transform: translateY(-1px);
+    }
+
+
+
+
+
+    /* Ajouter un genre */
+    .PMA-genre-btn-add {
+        padding: 10px 16px;
+        background: linear-gradient(135deg, #6c63ff, #8b6cff, #ff4d94);
+        color: white;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .PMA-genre-btn-add::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+
+    .PMA-genre-btn-add:hover::after {
+        opacity: 1;
+    }
+
+    /* Supprimer un genre */
+    .PMA-genre-btn-delete {
+        padding: 10px 16px;
+        background-color: #f44336;
+        color: white;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+
+    .PMA-genre-btn-delete:hover {
+        background-color: #d32f2f;
+        transform: translateY(-1px) scale(1.02);
+    }
+
+
+
+
+    /* ------------------------------- */
+    /* ------ POPUP GESTION GENRES ----- */
+    /* ------------------------------- */
+    .PMA-genre-popup h3 {
+        margin-bottom: 25px;
+    }
+
+    /* Container input + bouton + */
+    .PMA-genre-add {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .PMA-genre-add input {
+        flex: 1;
+    }
+
+    .PMA-genre-btn-add {
+        background-color: #6c63ff;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 0 14px;
+    }
+
+    .PMA-genre-btn-add:hover {
+        background-color: #5952d4;
+        transform: translateY(-1px) scale(1.05);
+    }
+
+    /* Liste des genres */
+    .PMA-genre-list {
+        max-height: 200px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .PMA-genre-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
+        margin-bottom: 6px;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        font-size: 14px;
+    }
+
+    .PMA-genre-item:hover {
+        background-color: #6c63ff;
+        color: white;
+    }
+
+    /* Supprimer genre */
+    .PMA-genre-btn-delete {
+        background-color: #f44336;
+        color: #fff;
+        border-radius: 6px;
+        font-size: 13px;
+        padding: 4px 8px;
+    }
+
+    .PMA-genre-btn-delete:hover {
+        background-color: #d32f2f;
+    }
+
+    /* Actions footer popup genres */
+    .PMA-genre-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+
+
+    /* POPUP ADD MUSIQUE DANS PLAYLIST*/
+
+    .PMA-playlist-list {
+        max-height: 300px;
+        /* pour que ça soit scrollable */
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .PMA-playlist-item {
+        padding: 10px 12px;
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
+        /* pour éviter la sélection de texte */
+        transition: all 0.2s;
+    }
+
+    .PMA-playlist-item:hover {
+        background-color: #dcdcff;
+    }
+
+    .PMA-playlist-item.selected {
+        background-color: #6c63ff;
+        color: white;
+    }
+
+
+
+
+    /* =============================== */
+    /* ===== ESPACEMENT POPUPS ======= */
+    /* =============================== */
+
+    /* Force une vraie séparation contenu / boutons */
+    .PMA-popup-edit>.PMA-popup-actions,
+    .PMA-genre-popup>.PMA-popup-actions {
+        margin-top: 25px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+        /* optionnel mais très clean */
+    }
+
+    /* Listes dans les popups (playlist, genres, etc.) */
+    .PMA-playlist-list {
+        margin-bottom: 15px;
+    }
+
+    /* Message avant boutons */
+    .PMA-popup-message,
+    .PMA-genre-message {
+        margin-top: 8px;
+    }
+
+
+
+    /* Gérer la distance pour la div contenant icone + titre biblio */
+    .PMA-title-content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-left: 150px;
+    }
+
+    .PMA-panel-title h1 {
+        font-size: 26px;
+        font-weight: 700;
+        margin: 0;
+        color: #333;
+    }
+
+    /* icône */
+    .PMA-title-icon {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg,
+                #6c63ff,
+                #8b6cff,
+                #ff4d94);
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+
+    /* FILTRE ET TRI */
+    .PMA-select-wrapper {
+        display: inline-block;
+        width: 250px;
+        position: relative;
+    }
+
+
+    /* Sélecteur stylé avec flèche native */
+    .PMA-filtre-select {
+        appearance: menulist; /* flèche native */
+        -webkit-appearance: menulist;
+        -moz-appearance: menulist;
+
+        width: 100%;
+        padding: 12px 35px 12px 40px; /* gauche = espace icône, droite = espace flèche */
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: #fff;
+        box-sizing: border-box;
+    }
+
+    /* Icône FontAwesome à gauche */
+    .PMA-select-icon-left {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 16px;
+        z-index: 2;
+    }
+
+
+    /* Sélecteur avec flèche native */
+    .PMA-filtre-tri {
+        appearance: menulist; /* flèche native */
+        -webkit-appearance: menulist;
+        -moz-appearance: menulist;
+
+        width: 100%;
+        padding: 12px 35px 12px 40px; /* gauche = icône, droite = flèche */
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: #fff;
+        box-sizing: border-box;
+    }
+

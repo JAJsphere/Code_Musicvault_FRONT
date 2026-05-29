@@ -1,0 +1,179 @@
+/* ================================ */
+/* ===== PANEL MUSIQUES PLAYLIST == */
+/* ================================ */
+
+.PPMA-panel-musique-playlist {
+  min-height: 100vh;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bande rose titre */
+.PPMA-titre-panel {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg,
+      #f4e8f6, #f5e8f4, #f3e9f7, #f6e8f4);
+  width: 100%;
+  height: 150px;
+  padding: 0 20px;
+  margin-bottom: 25px;
+}
+
+.PPMA-title-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: 150px;
+  /* 👈 comme PPA */
+}
+
+.PPMA-title-icon {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #6c63ff, #8b6cff, #ff4d94);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.PPMA-titre {
+  font-size: 26px;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+
+.PPMA-titre-playlist {
+  font-weight: 700;
+  font-size: 26px;
+  /* même taille que le titre normal */
+  color: #6c63ff;
+  /* violet sympa */
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: rgba(108, 99, 255, 0.1);
+  /* léger fond */
+  transition: all 0.2s ease;
+}
+
+.PPMA-titre-playlist:hover {
+  background-color: rgba(108, 99, 255, 0.2);
+}
+
+
+/* Messages */
+.PPMA-message-erreur {
+  color: #dc2626;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.PPMA-message-succes {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 15px auto;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  padding: 12px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Conteneur tableau */
+.PPMA-conteneur-tableau {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+}
+
+/* Tableau */
+.PPMA-table-musique {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.PPMA-table-musique thead {
+  background-color: #f9fafb;
+}
+
+.PPMA-table-musique th {
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.PPMA-table-musique td {
+  padding: 14px;
+  font-size: 14px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Alternance lignes */
+.PPMA-table-musique tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.PPMA-table-musique tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.PPMA-table-musique tbody tr:hover {
+  background-color: #e5e7eb;
+}
+
+/* Colonnes */
+.PPMA-col-nom {
+  font-weight: 500;
+  color: #111827;
+}
+
+.PPMA-col-actions {
+  width: 140px;
+  text-align: right;
+}
+
+/* Bouton supprimer */
+.PPMA-btn-supprimer {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background-color: #f44336;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.PPMA-btn-supprimer:hover {
+  background-color: #d32f2f;
+}
+
+/* Ligne vide */
+.PPMA-vide {
+  text-align: center;
+  padding: 25px;
+  color: #6b7280;
+}
+
+
+
+
+.PPMA-table-musique th:last-child,
+.PPMA-table-musique td:last-child {
+  text-align: center;
+}
